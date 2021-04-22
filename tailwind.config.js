@@ -4,7 +4,8 @@ module.exports = {
 	purge: {
 		content: [
 			"./src/**/*.html",
-			"./src/**/*.svelte"
+			"./src/**/*.svelte",
+            "./src/**/*.ts"
 		],
 		options: {
 			defaultExtractor: (content) => [
@@ -19,6 +20,13 @@ module.exports = {
 			keyframes: true,
 		},
 	},
+    theme: {
+        extend: {
+            colors: {
+                primary: "#c4113c"
+            }
+        }
+    },
 	variants: {
 		extend: {},
 	},

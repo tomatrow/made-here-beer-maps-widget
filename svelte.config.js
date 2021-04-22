@@ -1,5 +1,5 @@
 const sveltePreprocess = require("svelte-preprocess")
-const postcss = require("./postcss.config.cjs")
+const postcss = require("./postcss.config")
 
 // using sourceMap as an example, but could be anything you need dynamically
 function createPreprocessors(sourceMap) {

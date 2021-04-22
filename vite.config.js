@@ -1,7 +1,7 @@
 const svelte = require("@sveltejs/vite-plugin-svelte")
 const { defineConfig } = require("vite")
-const zenFormat = require("zen-format")
-const svelteConfig = require("./svelte.config.cjs")
+const zenFormat = require("@tomatrow/zen-format")
+const svelteConfig = require("./svelte.config")
 
 module.exports = defineConfig(({ mode }) => {
     const production = mode === "production"
@@ -21,7 +21,7 @@ module.exports = defineConfig(({ mode }) => {
         build: {
             minify: production,
             rollupOptions: {
-                input: "src/index.ts"
+                input: "src/App.svelte"
             }
         }
     }

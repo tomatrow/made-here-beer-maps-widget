@@ -3,9 +3,275 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <style>
+            html,
+            body {
+                height: 100vh;
+                background-color: black;
+            }
+            #map-widget {
+                width: 90%;
+                height: 90%;
+                margin: auto;
+            }
+        </style>
     </head>
     <body>
+        <div class="w-dyn-list">
+            <div role="list" class="w-dyn-items">
+                <div role="listitem" class="w-dyn-item">
+                    <div class="w-embed">
+                        <div
+                            class="beer-map-location"
+                            data-name="Bevy's Liquor World"
+                            data-slug="bevys-liquor-world"
+                            data-address="9749 S. Parker Rd., Parker, CO 80134"
+                            data-url="https://bevys.com"
+                            data-phone="(303) 841-3333"
+                            data-plus-code="85FQG6QH+P9"
+                        ></div>
+                    </div>
+                </div>
+                <div role="listitem" class="w-dyn-item">
+                    <div class="w-embed">
+                        <div
+                            class="beer-map-location"
+                            data-name="Bruin Spirits"
+                            data-slug="bruin-spirits"
+                            data-address="11177 S Dransfeldt Rd, Parker, CO 80134"
+                            data-url="http://bruinspirits.com"
+                            data-phone="(303) 840-1678"
+                            data-plus-code="85FQG67H+9Q"
+                        ></div>
+                    </div>
+                </div>
+                <div role="listitem" class="w-dyn-item">
+                    <div class="w-embed">
+                        <div
+                            class="beer-map-location"
+                            data-name="Chatfield Wine and Spirits"
+                            data-slug="chatfield-wine-and-spirits"
+                            data-address="8156 S. Wadsworth Boulevard #8, Littleton, CO 80128"
+                            data-url="https://www.chatfieldwineandspirits.com"
+                            data-phone="(303) 904-0228"
+                            data-plus-code="85FPHW99+9C"
+                        ></div>
+                    </div>
+                </div>
+                <div role="listitem" class="w-dyn-item">
+                    <div class="w-embed">
+                        <div
+                            class="beer-map-location"
+                            data-name="Denver's Best Liquor"
+                            data-slug="denvers-best-liquor"
+                            data-address="7465 E Iliff Ave, Denver, CO 80231"
+                            data-url="https://www.facebook.com/Denvers-Best-Liquor-108526597216556/"
+                            data-phone="(303) 558-0209"
+                            data-plus-code="85FQM3GX+M5"
+                        ></div>
+                    </div>
+                </div>
+                <div role="listitem" class="w-dyn-item">
+                    <div class="w-embed">
+                        <div
+                            class="beer-map-location"
+                            data-name="Finn's Manor"
+                            data-slug="finns-manor"
+                            data-address="2927 Larimer St., Denver, CO 80205"
+                            data-url="http://www.finnsmanor.co/"
+                            data-phone="(303) 353-2340"
+                            data-plus-code="85FQQ269+PC"
+                        ></div>
+                    </div>
+                </div>
+                <div role="listitem" class="w-dyn-item">
+                    <div class="w-embed">
+                        <div
+                            class="beer-map-location"
+                            data-name="Georgetown Wine &amp; Spirits"
+                            data-slug="georgetown-wine-spirits"
+                            data-address="1406 Argentine, Georgetown, CO 80444"
+                            data-url="https://www.yelp.com/biz/georgetown-liquors-georgetown"
+                            data-phone="(303) 569-3138"
+                            data-plus-code="85FPP873+CW"
+                        ></div>
+                    </div>
+                </div>
+                <div role="listitem" class="w-dyn-item">
+                    <div class="w-embed">
+                        <div
+                            class="beer-map-location"
+                            data-name="Great American Beer Store"
+                            data-slug="great-american-beer-store"
+                            data-address="1333 W. Alameda Ave., Denver, CO 80223"
+                            data-url="https://www.yelp.com/biz/the-great-american-beer-store-denver"
+                            data-phone="(303) 777-7837"
+                            data-plus-code="85FPPX6W+H3"
+                        ></div>
+                    </div>
+                </div>
+                <div role="listitem" class="w-dyn-item">
+                    <div class="w-embed">
+                        <div
+                            class="beer-map-location"
+                            data-name="Hazel's Beverage World"
+                            data-slug="hazels-beverage-world"
+                            data-address="1955 28th St., Boulder, CO 80301"
+                            data-url="https://hazelsboulder.com"
+                            data-phone="(303) 447-1955"
+                            data-plus-code="85GP2PCR+72"
+                        ></div>
+                    </div>
+                </div>
+                <div role="listitem" class="w-dyn-item">
+                    <div class="w-embed">
+                        <div
+                            class="beer-map-location"
+                            data-name="Kremmling West End Liquors"
+                            data-slug="kremmling-west-end-liquors"
+                            data-address="200 Park Center Ave., Kremmling, CO 80451"
+                            data-url=""
+                            data-phone="(970) 724-3564"
+                            data-plus-code="85GM3J53+FF"
+                        ></div>
+                    </div>
+                </div>
+                <div role="listitem" class="w-dyn-item">
+                    <div class="w-embed">
+                        <div
+                            class="beer-map-location"
+                            data-name="Logan Liquors"
+                            data-slug="logan-liquors"
+                            data-address="100 S. Logan St., Denver, CO 80207"
+                            data-url="http://www.loganliquors.com"
+                            data-phone="(303) 744-0730"
+                            data-plus-code="85FQP279+R2"
+                        ></div>
+                    </div>
+                </div>
+                <div role="listitem" class="w-dyn-item">
+                    <div class="w-embed">
+                        <div
+                            class="beer-map-location"
+                            data-name="Mohan Liquors"
+                            data-slug="mohan-liquors"
+                            data-address="13700 E. Alameda Ave., Aurora, CO 80012"
+                            data-url=""
+                            data-phone="(720) 216-0314"
+                            data-plus-code="85FQP56C+7R"
+                        ></div>
+                    </div>
+                </div>
+                <div role="listitem" class="w-dyn-item">
+                    <div class="w-embed">
+                        <div
+                            class="beer-map-location"
+                            data-name="Morgans W&amp;S Beer Emporium"
+                            data-slug="morgans-w-s-beer-emporium"
+                            data-address="1200 E Evans, Denver, CO 80210"
+                            data-url="https://www.facebook.com/morgansliquor/"
+                            data-phone="(303) 777-3981"
+                            data-plus-code="85FQM2HG+8P"
+                        ></div>
+                    </div>
+                </div>
+                <div role="listitem" class="w-dyn-item">
+                    <div class="w-embed">
+                        <div
+                            class="beer-map-location"
+                            data-name="Off Broadway W&amp;S"
+                            data-slug="off-broadway-w-s"
+                            data-address="51 Englewood Pkwy, Englewood, CO 80110"
+                            data-url="http://www.offbroadwaydenver.com"
+                            data-phone="(303) 781-4433"
+                            data-plus-code="85FQM246+3M"
+                        ></div>
+                    </div>
+                </div>
+                <div role="listitem" class="w-dyn-item">
+                    <div class="w-embed">
+                        <div
+                            class="beer-map-location"
+                            data-name="Peak Beverage"
+                            data-slug="peak-beverage"
+                            data-address="4375 Brighton Blvd., Denver, CO 80216"
+                            data-url="https://www.peakbev.com"
+                            data-phone="(720) 722-1140"
+                            data-plus-code="85FQQ2HJ+66"
+                        ></div>
+                    </div>
+                </div>
+                <div role="listitem" class="w-dyn-item">
+                    <div class="w-embed">
+                        <div
+                            class="beer-map-location"
+                            data-name="Tipsy's Liquor World"
+                            data-slug="tipsys-liquor-world"
+                            data-address="5869 Alkire St., Littleton, CO 80127"
+                            data-url="http://tipsysliquorworld.com"
+                            data-phone="(303) 551-7000"
+                            data-plus-code="85FPJV62+G4"
+                        ></div>
+                    </div>
+                </div>
+                <div role="listitem" class="w-dyn-item">
+                    <div class="w-embed">
+                        <div
+                            class="beer-map-location"
+                            data-name="Whole Foods Market - Union Station"
+                            data-slug="whole-foods-market-union-station"
+                            data-address="1701 Wewatta Street, Denver, CO 80202"
+                            data-url="https://www.wholefoodsmarket.com/shop/UST"
+                            data-phone="(720) 572-8800"
+                            data-plus-code="85FPQX3X+RF"
+                        ></div>
+                    </div>
+                </div>
+                <div role="listitem" class="w-dyn-item">
+                    <div class="w-embed">
+                        <div
+                            class="beer-map-location"
+                            data-name="Total Wine - Denver, CO"
+                            data-slug="total-wine-denver-co"
+                            data-address="3905 East Evans Ave., Denver, CO, 80210"
+                            data-url="https://www.totalwine.com/store-info/colorado-denver/2301"
+                            data-phone="(720) 535-0027"
+                            data-plus-code="85FQM3H5+G4"
+                        ></div>
+                    </div>
+                </div>
+                <div role="listitem" class="w-dyn-item">
+                    <div class="w-embed">
+                        <div
+                            class="beer-map-location"
+                            data-name="Total Wine - Centennial, CO"
+                            data-slug="total-wine-centennial-co"
+                            data-address="9505 E. County Line Rd., Centennial, CO, 80112"
+                            data-url="https://www.totalwine.com/store-info/colorado-centennial/2302"
+                            data-phone="(720) 381-4385"
+                            data-plus-code="85FQH49C+29"
+                        ></div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="map-widget" />
-        <script type="module" src="/src/index.ts"></script>
+        <script type="module">
+            import App from "/src/App.svelte"
+
+            const locations = Array.from(document.querySelectorAll(".beer-map-location")).map(div =>
+                Object.fromEntries(
+                    Object.entries({ ...div.dataset }).filter(([key, value]) => value)
+                )
+            )
+
+            new App({
+                target: document.querySelector("#map-widget"),
+                props: {
+                    locations,
+                    apiKey: import.meta.env.VITE_GOOGLE_MAP_KEY
+                }
+            })
+        </script>
     </body>
 </html>
