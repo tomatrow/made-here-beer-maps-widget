@@ -96,7 +96,7 @@
             <span class="text-white">Find Near:</span>
             <GooglePlacesAutocomplete
                 class="px-2 border"
-                on:placeChanged={event => place = event.detail.place}
+                on:placeChanged={event => (place = event.detail.place)}
                 types={["address"]}
             />
         </label>
