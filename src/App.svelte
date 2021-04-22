@@ -39,12 +39,6 @@
         )
     })
 
-    $: console.log({ map })
-    $: console.log({ center })
-    $: console.log({ place })
-    $: console.log({ radius })
-    $: console.log({ filteredLocations })
-
     function showLocation(plusCode: PlusCode) {
         scrollTo({ element: container })
         selection = null
