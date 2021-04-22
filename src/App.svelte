@@ -2,7 +2,7 @@
     import { fade } from "svelte/transition"
     import Tip from "./Tip.svelte"
     import { scrollTo } from "svelte-scrollto"
-    import type { PlusCode, AutocompleteResult, MarkerDetail } from "./index.type"
+    import type { PlusCode, MarkerDetail } from "./index.type"
     import "./app.postcss"
     import { mapsLoaded } from "./stores"
     import type { Location } from "./index.type"
@@ -46,10 +46,6 @@
         map.setZoom(17)
     }
 
-    function handlePlaceChange(event: CustomEvent<AutocompleteResult>) {
-        place = event.detail.place
-    }
-
     async function handleMarkerClick(event: CustomEvent<MarkerDetail>) {
         "#map"
         selection = null
@@ -57,7 +53,7 @@
         selection = event.detail
     }
 
-    function contentForSelection({ id }: MarkerDetail) {
+    function optionsForSelection({ id }: MarkerDetail): google.maps.InfoWindowOptions {
         const location = filteredLocations.find(location => location.slug === id)
         const target = document.createElement("div")
 
@@ -81,7 +77,9 @@
             })
         })
 
-        return target
+        return {
+            content: target
+        }
     }
 
     function removePlace() {
@@ -98,7 +96,7 @@
             <span class="text-white">Find Near:</span>
             <GooglePlacesAutocomplete
                 class="px-2 border"
-                on:placeChanged={handlePlaceChange}
+                on:placeChanged={event => place = event.detail.place}
                 types={["address"]}
             />
         </label>
@@ -135,12 +133,12 @@
     </div>
 
     <Map id="map" bind:center bind:map bind:maps bind:container class="h-96 mb-8 w-full">
-        {#each filteredLocations as { plusCode, slug } (slug)}
+        {#each filteredLocations as { plusCode, slug, icon } (slug)}
             <Marker
                 id={slug}
                 cluster
                 options={{
-                    icon: "/logo.svg",
+                    icon,
                     position: convertPlusCode(plusCode)
                 }}
                 on:click={handleMarkerClick}
@@ -150,7 +148,7 @@
             <InfoWindow
                 marker={selection.marker}
                 on:closeclick={() => (selection = null)}
-                options={{ content: contentForSelection(selection) }}
+                options={optionsForSelection(selection)}
             />
         {/if}
     </Map>

@@ -16,12 +16,28 @@ module.exports = defineConfig(({ mode }) => {
                     dev: !production
                 },
                 preprocess: svelteConfig.createPreprocessors(!production)
-            }),
+            })
         ],
         build: {
             minify: production,
+            terserOptions: {
+                format: {
+                    comments: false
+                }
+            },
             rollupOptions: {
-                input: "src/App.svelte"
+                input: "src/App.svelte",
+                output: {
+                    assetFileNames() {
+                        return "bundle.css"
+                    },
+                    entryFileNames() {
+                        return "bundle.js"
+                    },
+                    manualChunks() {
+                        return "bundle"
+                    }
+                }
             }
         }
     }

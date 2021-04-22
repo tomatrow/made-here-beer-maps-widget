@@ -5,6 +5,7 @@ export interface Location {
     url?: string
     phone?: string
     plusCode: string
+    icon?: string
 }
 
 type GlobalThis = typeof globalThis
