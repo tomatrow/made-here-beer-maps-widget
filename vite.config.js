@@ -27,7 +27,7 @@ module.exports = defineConfig(({ mode }) => {
                 }
             },
             lib: {
-                entry: resolve(__dirname, 'src/App.svelte'),
+                entry: resolve(__dirname, 'src/index.ts'),
                 name: "MadeHereBeerMapsWidget",
                 formats: ["es"]
             },
