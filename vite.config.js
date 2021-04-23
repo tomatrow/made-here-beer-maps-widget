@@ -28,21 +28,7 @@ module.exports = defineConfig(({ mode }) => {
             },
             lib: {
                 entry: resolve(__dirname, 'src/index.ts'),
-                name: "MadeHereBeerMapsWidget",
-                formats: ["es"]
-            },
-            rollupOptions: {
-                output: {
-                    assetFileNames() {
-                        return "bundle.css"
-                    },
-                    entryFileNames() {
-                        return "bundle.js"
-                    },
-                    manualChunks() {
-                        return "bundle"
-                    }
-                }
+                name: "MadeHereBeerMapsWidget"
             }
         }
     }
