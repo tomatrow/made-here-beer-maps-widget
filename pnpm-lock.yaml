@@ -6,6 +6,7 @@ devDependencies:
   '@types/google.maps': 3.44.3
   autoprefixer: 10.2.5
   cssnano: 5.0.1
+  lodash: 4.17.21
   open-location-code-typescript: 1.5.0
   prettier-plugin-svelte: 2.2.0_svelte@3.37.0
   svelte: 3.37.0
@@ -1850,6 +1851,7 @@ specifiers:
   '@types/google.maps': ^3.44.3
   autoprefixer: ^10.2.5
   cssnano: ^5.0.1
+  lodash: ^4.17.21
   open-location-code-typescript: ^1.5.0
   prettier-plugin-svelte: ^2.2.0
   svelte: ^3.37.0

@@ -8,11 +8,11 @@
     import type { Location } from "./index.type"
     import Map from "./Map.svelte"
     import GoogleSdk from "./GoogleSdk.svelte"
-    import GooglePlacesAutocomplete from "./GooglePlacesAutocomplete.svelte"
     import Marker from "./Marker.svelte"
     import { convertPlusCode } from "./utility"
     import InfoWindow from "./InfoWindow.svelte"
     import { tick } from "svelte"
+    import throttle from "lodash/throttle"
 
     export let locations: Location[] = []
     export let apiKey: string
@@ -86,6 +86,30 @@
         place = null
         radius = Number.POSITIVE_INFINITY
     }
+
+    let zip: string
+    let geocoder: google.maps.Geocoder
+    $: if (maps) {
+        geocoder = new maps.Geocoder()
+    }
+
+    type GeocodeCallback = (a: google.maps.GeocoderResult[], b: google.maps.GeocoderStatus) => void
+    const onPlace: GeocodeCallback = places => (place = places[0])
+    const throttledOnPlace = throttle(onPlace, 1000) as GeocodeCallback
+    function geocode(zip: string) {
+        if (!zip || zip.length < 2 || !geocode) return
+
+        geocoder.geocode(
+            {
+                address: zip,
+                componentRestrictions: {
+                    country: "US"
+                }
+            },
+            throttledOnPlace
+        )
+    }
+    $: geocode(zip)
 </script>
 
 <GoogleSdk {apiKey} />
@@ -94,10 +118,11 @@
         <!-- svelte-ignore a11y-label-has-associated-control -->
         <label class="space-x-2 flex flex-col sm:flex-row">
             <span class="text-white">Find Near:</span>
-            <GooglePlacesAutocomplete
+            <input
+                on:keydown={event => event.key === "Enter" && geocode(zip)}
+                bind:value={zip}
                 class="px-2 border"
-                on:placeChanged={event => (place = event.detail.place)}
-                types={["address"]}
+                placeholder="zip code"
             />
         </label>
         <label class="space-x-2 flex flex-col sm:flex-row">
