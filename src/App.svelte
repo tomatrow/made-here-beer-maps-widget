@@ -138,7 +138,10 @@
                 id={slug}
                 cluster
                 options={{
-                    icon,
+                    icon: {
+                        url: icon,
+                        scaledSize: new maps.Size(32, 61)
+                    },
                     position: convertPlusCode(plusCode)
                 }}
                 on:click={handleMarkerClick}
