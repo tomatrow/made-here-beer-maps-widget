@@ -27,16 +27,23 @@
     let selection: MarkerDetail
     let results: HTMLElement
 
-    let filteredLocations: Location[]
-    $: filteredLocations = locations.filter(({ plusCode }) => {
-        if (!place?.geometry.location) return true
+    function coordinates(plusCode: string) {
+        return new maps.LatLng(convertPlusCode(plusCode))
+    }
+
+    function distanceFromPlace({ plusCode }: Location) {
+        if (!place?.geometry.location) return null
         const { location } = place.geometry
+        const coords = coordinates(plusCode)
+        return maps.geometry.spherical.computeDistanceBetween(location, coords)
+    }
+
+    let filteredLocations: Location[]
+    $: filteredLocations = locations.filter(location => {
+        const distance = distanceFromPlace(location)
+        if (!distance) return true
         const METERS_PER_MILE = 1609.34
-        const coords = new maps.LatLng(convertPlusCode(plusCode))
-        return (
-            maps.geometry.spherical.computeDistanceBetween(location, coords) <
-            radius * METERS_PER_MILE
-        )
+        return distance < radius * METERS_PER_MILE
     })
 
     function showLocation(plusCode: PlusCode) {
@@ -94,7 +101,25 @@
     }
 
     type GeocodeCallback = (a: google.maps.GeocoderResult[], b: google.maps.GeocoderStatus) => void
-    const onPlace: GeocodeCallback = places => (place = places[0])
+    const onPlace: GeocodeCallback = async places => {
+        place = places[0]
+        await tick()
+
+        if (!place) return
+        // find the closest place
+        const sortedLocations = filteredLocations
+            .map(location => ({
+                location,
+                distance: distanceFromPlace(location)
+            }))
+            .filter(({ distance }) => distance !== null)
+            .sort((left, right) => left.distance - right.distance)
+
+        const closest = sortedLocations[0]
+        if (!closest) return
+
+        center = coordinates(closest.location.plusCode)
+    }
     const throttledOnPlace = throttle(onPlace, 1000) as GeocodeCallback
     function geocode(zip: string) {
         if (!zip || zip.length < 2 || !geocode) return
