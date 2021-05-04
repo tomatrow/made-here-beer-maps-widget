@@ -27,6 +27,15 @@
     let selection: MarkerDetail
     let results: HTMLElement
 
+    const validLocations = locations.filter(location => {
+        try {
+            convertPlusCode(location.plusCode)
+        } catch {
+            return false
+        }
+        return location?.name && location?.slug && location?.address
+    })
+
     function coordinates(plusCode: string) {
         return new maps.LatLng(convertPlusCode(plusCode))
     }
@@ -39,7 +48,7 @@
     }
 
     let filteredLocations: Location[]
-    $: filteredLocations = locations.filter(location => {
+    $: filteredLocations = validLocations.filter(location => {
         const distance = distanceFromPlace(location)
         if (!distance) return true
         const METERS_PER_MILE = 1609.34
